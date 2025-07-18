@@ -6,3 +6,4 @@ Flask-SQLAlchemy
 PyMySQL
 itsdangerous
 python-dotenv
+gunicorn
