@@ -1,0 +1,7 @@
+Flask
+flask-cors
+flask-jwt-extended
+flask-mail
+flask-mysqldb
+python-dotenv
+gunicorn
