@@ -3,7 +3,7 @@ from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from flask_mail import Mail
 from config import Config
-from db import init_mysql, db
+from db import db  # Only import the db object, no init here
 from auth import auth_bp
 from chat import chat_bp
 from goals import goals_bp
@@ -11,13 +11,14 @@ from payments import payments_bp
 
 app = Flask(__name__)
 app.config.from_object(Config)
-CORS(app)
 
+# Extensions
+CORS(app)
 jwt = JWTManager(app)
 mail = Mail(app)
-init_mysql(app)
-db.init_app(app)
+db.init_app(app)  # ✅ Correct placement
 
+# Register Blueprints
 app.register_blueprint(auth_bp)
 app.register_blueprint(chat_bp)
 app.register_blueprint(goals_bp)
@@ -28,6 +29,5 @@ def index():
     return {"message": "MindMate Backend Running"}
 
 if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
     app.run(debug=True)
+
