@@ -12,23 +12,28 @@ from payments import payments_bp
 app = Flask(__name__)
 app.config.from_object(Config)
 
+# Enable CORS
 CORS(app)
 
+# Initialize extensions
 jwt = JWTManager(app)
 mail = Mail(app)
-
-# Initialize DB
 db.init_app(app)
 
-# Register Blueprints
+# Register blueprints
 app.register_blueprint(auth_bp)
 app.register_blueprint(chat_bp)
 app.register_blueprint(goals_bp)
 app.register_blueprint(payments_bp)
 
+# Health check routes
 @app.route('/')
 def index():
-    return {"message": "MindMate Backend Running"}
+    return {"message": "MindMate Backend Running 🎉"}
+
+@app.route('/ping')
+def ping():
+    return {"pong": True}
 
 @app.route('/test-db')
 def test_db():
@@ -37,8 +42,3 @@ def test_db():
         return {"db": "Connected successfully ✅"}
     except Exception as e:
         return {"error": str(e)}, 500
-
-if __name__ == '__main__':
-    app.run()
-
-
