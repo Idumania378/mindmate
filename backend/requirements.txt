@@ -2,6 +2,7 @@ Flask
 flask-cors
 flask-jwt-extended
 flask-mail
-flask-mysqldb
+flask-sqlalchemy
+pymysql
 python-dotenv
 gunicorn
