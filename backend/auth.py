@@ -3,7 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from itsdangerous import URLSafeTimedSerializer
 from flask_jwt_extended import create_access_token
 import uuid
-from db import init_mysql
+from db import db
 
 auth_bp = Blueprint('auth', __name__)
 
