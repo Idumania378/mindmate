@@ -1,18 +1,11 @@
-import os
-from dotenv import load_dotenv
-
-load_dotenv()
-
 class Config:
-    SECRET_KEY = os.getenv("FLASK_SECRET_KEY", "super-secret")
-    SQLALCHEMY_DATABASE_URI = os.getenv("    mysql://root:MHuHjFkvDBNAscawowjlVishPXpfdyvj@mysql.railway.internal:3306/railway# your App Password
-")  # use Railway's full connection string
+    SECRET_KEY = "super-secret"
+    SQLALCHEMY_DATABASE_URI = "mysql://root:MHuHjFkvDBNAscawowjlVishPXpfdyvj@mysql.railway.internal:3306/railway"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY", "super-secret-jwt")
+    JWT_SECRET_KEY = "super-secret-jwt"
 
     MAIL_SERVER = 'smtp.gmail.com'
     MAIL_PORT = 587
     MAIL_USE_TLS = True
-    MAIL_USERNAME = os.getenv("MAIL_USERNAME")
-    MAIL_PASSWORD = os.getenv("MAIL_PASSWORD")
-
+    MAIL_USERNAME = "your-email@gmail.com"
+    MAIL_PASSWORD = "your-gmail-app-password"
