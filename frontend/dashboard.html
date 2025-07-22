@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MindMate</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css ">
+</head>
+<body class="light-mode">
+  <!-- Toast Notification -->
+  <div id="toast" class="toast"></div>
+
+  <!-- Navigation -->
+  <header id="navbar">
+    <nav class="navbar-container">
+      <div class="logo">
+        <div class="logo-placeholder">🧠</div>
+        <span>MindMate</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#home-page" class="active"><i class="fa-solid fa-house"></i> Home</a></li>
+        <li><a href="#chat-page"><i class="fa-solid fa-comment-dots"></i> Chat</a></li>
+        <li><a href="#goals-page"><i class="fa-solid fa-gear"></i> Goals</a></li>
+        <li><a href="#pricing-page"><i class="fa-solid fa-file-invoice-dollar"></i> Pricing</a></li>
+        <li><a href="#login-page"><i class="fa-solid fa-right-to-bracket"></i> Login</a></li>
+        <li><a href="#register-page"><i class="fa-solid fa-user-plus"></i> Register</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Home Page -->
+  <div id="home-page" class="page">
+    <section class="home-hero">
+      <h1>Your Mental Health Companion</h1>
+      <p>MindMate is your AI-powered assistant for mental health and wellness. Track goals, chat with AI, and grow at your own pace.</p>
+      <button class="btn btn-primary" onclick="showPage('goals-page')">Create Your First Goal</button>
+    </section>
+
+    <!-- Clean Circular Progress -->
+    <section class="home-progress">
+      <h2>Goal Progress</h2>
+      <div class="circular-progress">
+        <svg width="120" height="120" viewBox="0 0 120 120">
+          <circle class="progress-bg" cx="60" cy="60" r="50" />
+          <circle class="progress-bar" cx="60" cy="60" r="50" />
+          <text id="progress-label" x="60" y="60" text-anchor="middle" dominant-baseline="middle" font-size="16" fill="var(--text-color)">0%</text>
+        </svg>
+      </div>
+    </section>
+  </div>
+
+  <!-- Chat Page -->
+  <div id="chat-page" class="page">
+    <section class="chat-container">
+      <div class="chat-header">
+        <h2>Chat with MindMate AI</h2>
+        <p>Share your thoughts and get personalized support</p>
+      </div>
+      <div class="chat-messages" id="chat-messages">
+        <div class="message bot">
+          <p>Hello! I'm your MindMate AI assistant. How are you feeling today?</p>
+        </div>
+      </div>
+      <form id="chat-form">
+        <input type="text" placeholder="Type your message..." required>
+        <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+      </form>
+    </section>
+  </div>
+
+  <!-- Goals Page -->
+  <div id="goals-page" class="page">
+    <section class="create-goal">
+      <h2>Create New Goal</h2>
+      <form id="goal-form">
+        <div class="form-group">
+          <input type="text" id="goal-title" placeholder="Goal title" required>
+        </div>
+        <div class="form-group">
+          <textarea id="goal-description" placeholder="Goal description" required></textarea>
+        </div>
+        <label>Steps to Complete (1–10)</label>
+        <div class="step-counter">
+          <button type="button" id="minus-step"><i class="fa-solid fa-minus"></i></button>
+          <span id="step-count">1</span>
+          <button type="button" id="plus-step"><i class="fa-solid fa-plus"></i></button>
+        </div>
+        <label>Category</label>
+        <select id="goal-category">
+          <option value="Health">Health</option>
+          <option value="Productivity">Productivity</option>
+          <option value="Habit">Habit</option>
+          <option value="Uncategorized">Uncategorized</option>
+        </select>
+        <button type="submit" class="btn btn-primary">Create Goal</button>
+      </form>
+
+      <div class="filters">
+        <button onclick="filterGoals('All')" class="filter-btn active" data-filter="All">All</button>
+        <button onclick="filterGoals('Health')" data-filter="Health">Health</button>
+        <button onclick="filterGoals('Productivity')" data-filter="Productivity">Productivity</button>
+        <button onclick="filterGoals('Habit')" data-filter="Habit">Habit</button>
+      </div>
+
+      <section class="goal-list" id="goal-list">
+        <!-- Goals will be dynamically added here -->
+      </section>
+    </section>
+  </div>
+
+  <!-- Pricing Page -->
+  <div id="pricing-page" class="page">
+    <section class="pricing-header">
+      <h2>Choose Your Plan</h2>
+      <p>Select the plan that best fits your mental health journey</p>
+    </section>
+    <section class="pricing-plans">
+      <div class="plan free">
+        <h3>Free</h3>
+        <p>Perfect for getting started</p>
+        <h2>$0<span>/month</span></h2>
+        <ul>
+          <li>Basic chat support</li>
+          <li>Up to 3 goals</li>
+          <li>Progress tracking</li>
+          <li>Community access</li>
+        </ul>
+        <button class="btn btn-secondary">Current Plan</button>
+      </div>
+      <div class="plan compact active">
+        <div class="popular-badge">Popular</div>
+        <h3>Compact</h3>
+        <p>Enhanced features for regular users</p>
+        <h2>$9.99<span>/month</span></h2>
+        <ul>
+          <li>Unlimited chat support</li>
+          <li>Unlimited goals</li>
+          <li>Advanced analytics</li>
+          <li>Priority support</li>
+          <li>Mood tracking</li>
+          <li>Custom reminders</li>
+        </ul>
+        <button class="btn btn-primary">Upgrade</button>
+      </div>
+      <div class="plan premium">
+        <h3>Premium</h3>
+        <p>Complete mental health toolkit</p>
+        <h2>$19.99<span>/month</span></h2>
+        <ul>
+          <li>Everything in Compact</li>
+          <li>Personal AI coach</li>
+          <li>Video sessions</li>
+          <li>Expert consultations</li>
+          <li>Family sharing</li>
+          <li>Advanced insights</li>
+        </ul>
+        <button class="btn btn-secondary">Upgrade</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- Login Page -->
+  <div id="login-page" class="page">
+    <section class="auth-form">
+      <h2>Sign In to MindMate</h2>
+      <form id="login">
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Password" required>
+        <button type="submit" class="btn btn-primary">Login</button>
+        <p>Don't have an account? <a href="#register-page" onclick="showPage('register-page')">Register here</a></p>
+      </form>
+    </section>
+  </div>
+
+  <!-- Registration Page -->
+  <div id="register-page" class="page">
+    <section class="auth-form">
+      <h2>Create Your Account</h2>
+      <form id="register">
+        <input type="text" placeholder="Full Name" required>
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Password" required>
+        <button type="submit" class="btn btn-primary">Register</button>
+        <p>Already have an account? <a href="#login-page" onclick="showPage('login-page')">Login here</a></p>
+      </form>
+    </section>
+  </div>
+
+  <!-- Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const pages = document.querySelectorAll(".page");
+      const navLinks = document.querySelectorAll("#navbar .nav-links li a");
+      const goalList = document.getElementById("goal-list");
+      const chatMessages = document.getElementById("chat-messages");
+      const progressCircle = document.querySelector(".progress-bar");
+      const progressLabel = document.getElementById("progress-label");
+
+      // Goal tracking
+      let goals = [];
+
+      // Load from localStorage
+      const savedGoals = localStorage.getItem("mindmate-goals");
+      if (savedGoals) {
+        goals = JSON.parse(savedGoals);
+        goals.forEach(renderGoal);
+      }
+
+      // Navigation
+      function showPage(pageId) {
+        pages.forEach(page => {
+          page.style.display = page.id === pageId ? "block" : "none";
+        });
+
+        // Update active nav link
+        navLinks.forEach(link => {
+          link.classList.remove("active");
+          if (link.getAttribute("href") === `#${pageId}`) {
+            link.classList.add("active");
+          }
+        });
+      }
+
+      navLinks.forEach(link => {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute("href").substring(1);
+          showPage(targetId);
+        });
+      });
+
+      // Chat
+      const chatForm = document.getElementById("chat-form");
+      if (chatForm && chatMessages) {
+        chatForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          const input = this.querySelector("input");
+          const text = input.value.trim();
+          if (!text) return;
+
+          // Append user message
+          const userMessage = document.createElement("div");
+          userMessage.className = "message user";
+          userMessage.innerHTML = `<p>${text}</p>`;
+          chatMessages.appendChild(userMessage);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+          input.value = "";
+
+          // AI response
+          setTimeout(() => {
+            const botMessage = document.createElement("div");
+            botMessage.className = "message bot";
+            botMessage.innerHTML = `<p>Thanks for sharing, ${text}! What can I help you with next?</p>`;
+            chatMessages.appendChild(botMessage);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+          }, 1000);
+        });
+      }
+
+      // Goals
+      const goalForm = document.getElementById("goal-form");
+      const minusBtn = document.getElementById("minus-step");
+      const plusBtn = document.getElementById("plus-step");
+      const stepCount = document.getElementById("step-count");
+      let currentSteps = 1;
+      stepCount.textContent = currentSteps;
+
+      minusBtn.addEventListener("click", () => {
+        if (currentSteps > 1) {
+          currentSteps--;
+          stepCount.textContent = currentSteps;
+        }
+      });
+
+      plusBtn.addEventListener("click", () => {
+        if (currentSteps < 10) {
+          currentSteps++;
+          stepCount.textContent = currentSteps;
+        }
+      });
+
+      if (goalForm) {
+        goalForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          const titleInput = document.getElementById("goal-title");
+          const descInput = document.getElementById("goal-description");
+          const category = document.getElementById("goal-category").value;
+          const title = titleInput.value.trim();
+          const description = descInput.value.trim();
+
+          if (!title || !description) return;
+
+          const goal = {
+            id: Date.now(),
+            title,
+            description,
+            totalSteps: currentSteps,
+            completed: 0,
+            category
+          };
+
+          goals.push(goal);
+          localStorage.setItem("mindmate-goals", JSON.stringify(goals));
+          renderGoal(goal);
+          this.reset();
+          currentSteps = 1;
+          stepCount.textContent = currentSteps;
+        });
+      }
+
+      function renderGoal(goal) {
+        const goalCard = document.createElement("div");
+        goalCard.className = "goal-card";
+        goalCard.innerHTML = `
+          <h3>${goal.title}</h3>
+          <p>${goal.description}</p>
+          <p><strong>Category:</strong> ${goal.category}</p>
+          <div class="goal-steps">
+            ${Array.from({ length: goal.totalSteps }).map((_, i) => `
+              <label class="step-label">
+                <input type="checkbox" data-goal-id="${goal.id}" data-step="${i + 1}">
+                Step ${i + 1}
+              </label>
+            `).join("")}
+          </div>
+          <div class="goal-progress-container">
+            <div class="goal-progress-bar" id="progress-${goal.id}"></div>
+          </div>
+          <div class="goal-progress-label" id="label-${goal.id}">0%</div>
+          <button class="delete-goal" onclick="deleteGoal(${goal.id})"><i class="fa-solid fa-trash"></i></button>
+        </div>`;
+
+        goalList.appendChild(goalCard);
+
+        goalCard.querySelectorAll("input[type='checkbox']").forEach(checkbox => {
+          checkbox.addEventListener("change", function () {
+            const goalId = parseInt(this.getAttribute("data-goal-id"));
+            const step = parseInt(this.getAttribute("data-step"));
+            const goal = goals.find(g => g.id === goalId);
+            if (this.checked) {
+              goal.completed++;
+            } else {
+              goal.completed--;
+            }
+            updateGoalProgress(goal);
+            updateHomeProgress();
+            localStorage.setItem("mindmate-goals", JSON.stringify(goals));
+          });
+        });
+      }
+
+      function deleteGoal(goalId) {
+        goals = goals.filter(g => g.id !== goalId);
+        document.getElementById("goal-list").innerHTML = "";
+        goals.forEach(renderGoal);
+        updateHomeProgress();
+        localStorage.setItem("mindmate-goals", JSON.stringify(goals));
+        showToast("Goal deleted!");
+      }
+
+      function updateGoalProgress(goal) {
+        const percent = (goal.completed / goal.totalSteps) * 100;
+        const progressBar = document.getElementById(`progress-${goal.id}`);
+        const label = document.getElementById(`label-${goal.id}`);
+        if (progressBar && label) {
+          progressBar.style.width = `${percent}%`;
+          label.textContent = `${Math.floor(percent)}%`;
+        }
+      }
+
+      function updateHomeProgress() {
+        const total = goals.reduce((sum, g) => sum + g.totalSteps, 0);
+        const completed = goals.reduce((sum, g) => sum + g.completed, 0);
+        const percent = total ? Math.floor((completed / total) * 100) : 0;
+        if (progressCircle && progressLabel) {
+          const circumference = 2 * Math.PI * 50;
+          const offset = circumference * (1 - percent / 100);
+          progressCircle.setAttribute("stroke-dashoffset", offset);
+          progressLabel.textContent = `${percent}%`;
+        }
+      }
+
+      // Category filter
+      window.filterGoals = function(category) {
+        document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
+        document.querySelector(`[data-filter="${category}"]`).classList.add("active");
+        goalList.innerHTML = "";
+        goals.filter(g => category === "All" || g.category === category).forEach(renderGoal);
+      }
+
+      // Toast
+      window.showToast = function(message) {
+        const toast = document.getElementById("toast");
+        toast.textContent = message;
+        toast.classList.add("show");
+        setTimeout(() => toast.classList.remove("show"), 3000);
+      }
+
+      // Theme toggle
+      const themeToggle = document.getElementById("theme-toggle");
+      themeToggle.addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+        themeToggle.innerHTML = document.body.classList.contains("dark-mode")
+          ? '<i class="fa-solid fa-sun"></i>'
+          : '<i class="fa-solid fa-moon"></i>';
+      });
+
+      // Initial page
+      showPage("home-page");
+    });
+  </script>
+</body>
+</html>
