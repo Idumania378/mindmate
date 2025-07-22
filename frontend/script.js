@@ -15,8 +15,10 @@ if (signupForm) {
 
     // Save user to localStorage (simulated "backend")
     localStorage.setItem('mindmate_user', JSON.stringify({ name, email, password }));
-    alert('Account created! You can now sign in.');
-    window.location.href = 'signin.html';
+
+    // ✅ Redirect directly to dashboard after registration
+    alert('Account created successfully!');
+    window.location.href = 'dashboard.html';
   });
 }
 
@@ -32,9 +34,15 @@ if (loginForm) {
 
     if (user && user.email === email && user.password === password) {
       alert(`Welcome back, ${user.name}!`);
-      // Proceed to dashboard or app page
+      // ✅ Redirect to dashboard
+      window.location.href = 'dashboard.html';
     } else {
       alert('Invalid credentials!');
     }
   });
 }
+
+  const user = JSON.parse(localStorage.getItem('mindmate_user'));
+  if (user) {
+    document.getElementById('greeting').textContent = `Welcome back, ${user.name}!`;
+  }
