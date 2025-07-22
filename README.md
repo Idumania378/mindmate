@@ -10,7 +10,7 @@
 - 🔒 JWT Authentication
 
 ## Tech Stack
-- **Frontend**: React + TypeScript + Vite + Tailwind
+- **Frontend**: 
 - **Backend**: Flask + MySQL + SocketIO
 - **AI**: Qwen API for chat + image analysis
 - **Payments**: Stripe + M-Pesa + Google Pay
@@ -25,8 +25,7 @@ cd mindmate
 
 # Setup frontend
 cd frontend
-npm install
-npm run dev
+
 
 # Setup backend
 cd ../backend
