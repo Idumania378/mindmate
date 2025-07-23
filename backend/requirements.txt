@@ -1,0 +1,9 @@
+Flask
+flask-cors
+flask-jwt-extended
+flask-mail
+Flask-SQLAlchemy
+PyMySQL
+itsdangerous
+python-dotenv
+gunicorn

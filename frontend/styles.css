@@ -1,0 +1,106 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f2f6fb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.landing{
+    background: linear-gradient(135deg, rgb(233, 245, 247), #dceeff);
+}
+
+.container{
+  padding: 2rem;
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+.form-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+.form-page{
+    background: linear-gradient(135deg, rgb(227, 244, 247), #dceeff);
+}
+
+h1, h2 {
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+h1{
+    i{
+        color: #00e1ff;
+    }
+}
+
+p {
+  color: #666;
+  font-size: 0.95rem;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  border: .7px solid #ccc;
+  border-radius: 8px;
+}
+
+/* When hovering over an input */
+input:hover, select:hover {
+  background-color: #f0f8ff;  /* Light blueish on hover */
+}
+
+/* When input/select is focused (user is typing) */
+input:focus, select:focus {
+  background-color: #e6f0ff;  /* Softer blue on focus */
+  outline: none; /* Remove default blue outline */
+  box-shadow: 0 0 4px rgba(228, 228, 231, 0.5);
+}
+
+/* Optional: when actively clicking */
+input:active, select:active {
+  background-color: #dceeff;
+}
+
+.btn {
+  background: #000000;
+  color: white;
+  padding: 10px;
+  max-width: 100%;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  text-decoration: none;
+}
+
+.btn.secondary {
+  background: #ffffff;
+  color: #000000;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
