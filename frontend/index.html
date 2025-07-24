@@ -3,8 +3,116 @@
 <head>
   <meta charset="UTF-8">
   <title>MindMate – Welcome</title>
-  <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+  body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f2f6fb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.landing{
+    background: linear-gradient(135deg, rgb(233, 245, 247), #dceeff);
+}
+
+.container{
+  padding: 2rem;
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+.form-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+.form-page{
+    background: linear-gradient(135deg, rgb(227, 244, 247), #dceeff);
+}
+
+h1, h2 {
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+h1{
+    i{
+        color: #00e1ff;
+    }
+}
+
+p {
+  color: #666;
+  font-size: 0.95rem;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  border: .7px solid #ccc;
+  border-radius: 8px;
+}
+
+/* When hovering over an input */
+input:hover, select:hover {
+  background-color: #f0f8ff;  /* Light blueish on hover */
+}
+
+/* When input/select is focused (user is typing) */
+input:focus, select:focus {
+  background-color: #e6f0ff;  /* Softer blue on focus */
+  outline: none; /* Remove default blue outline */
+  box-shadow: 0 0 4px rgba(228, 228, 231, 0.5);
+}
+
+/* Optional: when actively clicking */
+input:active, select:active {
+  background-color: #dceeff;
+}
+
+.btn {
+  background: #000000;
+  color: white;
+  padding: 10px;
+  max-width: 100%;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  text-decoration: none;
+}
+
+.btn.secondary {
+  background: #ffffff;
+  color: #000000;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+</style>
 </head>
 <body class="landing">
   <div class="container">
@@ -15,6 +123,57 @@
       <a href="signup.html" class="btn secondary">Get Started</a>
     </div>
   </div>
+  <script>
+  // Sign Up Form
+const signupForm = document.getElementById('signupForm');
+if (signupForm) {
+  signupForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('signupEmail').value;
+    const password = document.getElementById('signupPassword').value;
+    const confirm = document.getElementById('confirmPassword').value;
+
+    if (password !== confirm) {
+      alert('Passwords do not match!');
+      return;
+    }
+
+    // Save user to localStorage (simulated "backend")
+    localStorage.setItem('mindmate_user', JSON.stringify({ name, email, password }));
+
+    // ✅ Redirect directly to dashboard after registration
+    alert('Account created successfully!');
+    window.location.href = 'dashboard.html';
+  });
+}
+
+// Login Form
+const loginForm = document.getElementById('loginForm');
+if (loginForm) {
+  loginForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
+
+    const user = JSON.parse(localStorage.getItem('mindmate_user'));
+
+    if (user && user.email === email && user.password === password) {
+      alert(`Welcome back, ${user.name}!`);
+      // ✅ Redirect to dashboard
+      window.location.href = 'dashboard.html';
+    } else {
+      alert('Invalid credentials!');
+    }
+  });
+}
+
+  const user = JSON.parse(localStorage.getItem('mindmate_user'));
+  if (user) {
+    document.getElementById('greeting').textContent = `Welcome back, ${user.name}!`;
+  }
+
+</script>
 </body>
 </html>
 
