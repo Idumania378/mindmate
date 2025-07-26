@@ -20,7 +20,7 @@
 ## Getting Started
 ```bash
 # Clone repo
-git clone  https://github.com/yourusername/mindmate.git 
+git clone  https://github.com/Idumania378/mindmate.git 
 cd mindmate
 
 # Setup frontend
