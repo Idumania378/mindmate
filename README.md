@@ -10,7 +10,7 @@
 - 🔒 JWT Authentication
 
 ## Tech Stack
-- **Frontend**: 
+- **Frontend**: HTML + CSS + JS
 - **Backend**: Flask + MySQL + SocketIO
 - **AI**: Qwen API for chat + image analysis
 - **Payments**: Stripe + M-Pesa + Google Pay
